@@ -1,4 +1,4 @@
-package ready_to_marry.userservice.entity.user;
+package ready_to_marry.partnerservice.entity.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

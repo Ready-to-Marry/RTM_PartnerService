@@ -1,10 +1,10 @@
-package ready_to_marry.userservice;
+package ready_to_marry.partnerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class PartnerServiceApplicationTests {
 
     @Test
     void contextLoads() {

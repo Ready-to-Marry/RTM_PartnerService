@@ -1,13 +1,13 @@
-package ready_to_marry.userservice;
+package ready_to_marry.partnerservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserServiceApplication {
+public class PartnerServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
+        SpringApplication.run(PartnerServiceApplication.class, args);
     }
 
 }
