@@ -44,8 +44,17 @@ dependencies {
     // Spring Boot Actuator (Health Check용)
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+    // Jackson (JSON 직렬화/역직렬화용)
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+    // Spring Boot Actuator (Health Check용)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
     // eureka client
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
 
 }
 
