@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
+import ready_to_marry.partnerservice.partner.dto.ItemDetailResponse;
 import ready_to_marry.partnerservice.partner.dto.ItemListResponse;
 import ready_to_marry.partnerservice.partner.service.PartnerService;
 
@@ -20,5 +21,11 @@ public class PartnerController {
     ) {
         ItemListResponse response = partnerService.listByPartner(partnerId, page, size);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/items/{itemId}")
+    public ResponseEntity<ItemDetailResponse> getItemDetail(@PathVariable Long itemId) {
+        ItemDetailResponse detail = partnerService.getItemDetail(itemId);
+        return ResponseEntity.ok(detail);
     }
 }
