@@ -3,7 +3,6 @@ package ready_to_marry.partnerservice.partner.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ready_to_marry.partnerservice.common.dto.ApiResponse;
 import ready_to_marry.partnerservice.partner.dto.ItemDetailResponse;
 import ready_to_marry.partnerservice.partner.dto.ItemListResponse;
 import ready_to_marry.partnerservice.partner.service.PartnerService;
