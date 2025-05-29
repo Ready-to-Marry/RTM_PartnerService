@@ -12,6 +12,7 @@ public enum ErrorCode {
     NO_SEARCH_RESULT(1502, "no search result"),
     NO_SEARCH_TERM(1503, "can't blank search term"),
     PARTNER_NOT_FOUND(1504, "partner not found"),
+    DATA_FORMAT_ERROR(1505, "data format error"),
 
     // 2xxx: 인프라(시스템) 오류
     POSTGRES_SAVE_FAILURE(2501, "Can't save to postgres"),

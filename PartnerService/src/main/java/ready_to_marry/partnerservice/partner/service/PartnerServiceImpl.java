@@ -1,6 +1,7 @@
 package ready_to_marry.partnerservice.partner.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,8 @@ public class PartnerServiceImpl implements PartnerService {
         try{
             partnerRepository.save(partner);
             return partner.getId();
+        }catch (ConstraintViolationException e){
+            throw new BusinessException(ErrorCode.DATA_FORMAT_ERROR);
         }catch (DataAccessException e){
             throw new InfraException(ErrorCode.POSTGRES_SAVE_FAILURE, e);
         }
@@ -61,10 +64,16 @@ public class PartnerServiceImpl implements PartnerService {
     @Override
     public boolean deletePartner(Long partnerId) {
         try {
+            boolean exists = partnerRepository.existsById(partnerId);
+            if (!exists) {
+                throw new EntityNotFoundException("Partner with id " + partnerId + " not found");
+            }
             partnerRepository.deleteById(partnerId);
             return true;
+        } catch (EntityNotFoundException e) {
+            throw new BusinessException(ErrorCode.PARTNER_NOT_FOUND);
         } catch (DataAccessException e) {
-            throw new InfraException(ErrorCode.POSTGRES_SAVE_FAILURE, e);
+            throw new InfraException(ErrorCode.POSTGRES_DELETE_FAILURE, e);
         }
     }
 }
