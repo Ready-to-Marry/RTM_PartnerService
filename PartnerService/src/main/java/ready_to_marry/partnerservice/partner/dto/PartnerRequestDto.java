@@ -1,25 +1,19 @@
-package ready_to_marry.partnerservice.partner.entity;
+package ready_to_marry.partnerservice.partner.dto;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import ready_to_marry.partnerservice.common.util.BaseEntity;
+import lombok.Setter;
 
-@Entity
-@Getter
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Partner extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+@NoArgsConstructor
+@Getter
+@Setter
+public class PartnerRequestDto {
     @Column(length = 20)
     private String name;
 

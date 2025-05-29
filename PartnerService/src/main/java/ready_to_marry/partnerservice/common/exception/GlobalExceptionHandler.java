@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
-import ready_to_marry.partnerservice.common.dto.ErrorDetail;
 import ready_to_marry.partnerservice.common.exception.payment.BusinessException;
 
 @RestControllerAdvice
