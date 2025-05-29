@@ -9,23 +9,16 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class PartnerRequestDto {
-
+public class PartnerResponseDto {
     private String name;
 
     private String companyName;
 
     private String address;
 
-    @NotBlank
-    @Pattern(regexp = "^\\+?[0-9\\-]{1,20}$")
     private String phone;
 
-    @NotBlank
-    @Pattern(regexp = "^\\+?[0-9\\-]{1,20}$")
     private String companyNum;
 
-    @NotBlank
-    @Pattern(regexp = "^[0-9]{10}$")
     private String businessNum;
 }
