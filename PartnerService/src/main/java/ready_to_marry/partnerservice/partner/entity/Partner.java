@@ -1,6 +1,8 @@
 package ready_to_marry.partnerservice.partner.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,13 +24,19 @@ public class Partner extends BaseEntity {
     private String name;
 
     @Column(length = 255)
-    private String company_name;
+    private String companyName;
 
     private String address;
 
+    @NotBlank
+    @Pattern(regexp = "^\\+?[0-9\\-]{1,20}$")
     private String phone;
 
-    private String company_num;
+    @NotBlank
+    @Pattern(regexp = "^\\+?[0-9\\-]{1,20}$")
+    private String companyNum;
 
-    private String business_num;
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{10}$")
+    private String businessNum;
 }

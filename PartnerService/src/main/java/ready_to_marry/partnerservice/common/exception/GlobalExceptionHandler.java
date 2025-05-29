@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
-import ready_to_marry.partnerservice.common.dto.ErrorDetail;
 import ready_to_marry.partnerservice.common.exception.payment.BusinessException;
 
 @RestControllerAdvice
@@ -19,7 +18,7 @@ public class GlobalExceptionHandler {
                 .message(ex.getMessage())
                 .data(null)
                 .build();
-        return ResponseEntity.status(HttpStatus.OK).body(body);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     // 일반적인 예외를 처리하는 핸들러
