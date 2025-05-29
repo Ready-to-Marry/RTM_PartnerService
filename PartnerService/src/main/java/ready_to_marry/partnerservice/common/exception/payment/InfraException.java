@@ -8,8 +8,8 @@ public class InfraException extends RuntimeException {
 
     private final int code;
 
-    public InfraException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
+    public InfraException(ErrorCode errorCode, Throwable cause) {
+        super(errorCode.getMessage(), cause);
         this.code = errorCode.getCode();
     }
 }
