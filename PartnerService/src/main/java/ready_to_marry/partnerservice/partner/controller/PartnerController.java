@@ -9,6 +9,7 @@ import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
 import ready_to_marry.partnerservice.partner.service.PartnerService;
 
 @RestController
+@RequestMapping("/partner")
 @RequiredArgsConstructor
 public class PartnerController {
     private final PartnerService partnerService;
