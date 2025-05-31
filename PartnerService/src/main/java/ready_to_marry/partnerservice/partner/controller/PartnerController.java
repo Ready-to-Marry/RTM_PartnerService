@@ -26,6 +26,8 @@ public class PartnerController {
 
     @GetMapping("/profile/{partnerId}")
     public ResponseEntity<ApiResponse<PartnerResponseDto>> getProfile(@PathVariable Long partnerId) {
+        System.out.println(partnerId);
+        System.out.println("호출 완료");
         PartnerResponseDto result = partnerService.findPartnerById(partnerId);
         return ResponseEntity.ok(
                 ApiResponse.<PartnerResponseDto>builder()
