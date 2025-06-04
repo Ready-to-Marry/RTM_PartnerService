@@ -13,6 +13,9 @@ public enum ErrorCode {
     NO_SEARCH_TERM(1503, "can't blank search term"),
     PARTNER_NOT_FOUND(1504, "partner not found"),
     DATA_FORMAT_ERROR(1505, "data format error"),
+    NOT_FOUND_RESERVATION(1701, "Reservation not found"),
+    RESERVATION_STATUS_NOT_ANSWERED(1703, "Reservation status must be ANSWERED"),
+    UNAUTHORIZED_RESERVATION_ACCESS(1704, "You do not have permission to access this reservation"),
 
     // 2xxx: 인프라(시스템) 오류
     POSTGRES_SAVE_FAILURE(2501, "Can't save to postgres"),

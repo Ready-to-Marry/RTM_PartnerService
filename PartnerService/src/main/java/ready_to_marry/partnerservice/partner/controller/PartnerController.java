@@ -3,6 +3,8 @@ package ready_to_marry.partnerservice.partner.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ready_to_marry.partnerservice.Reservation.dto.ContractRequestDto;
+import ready_to_marry.partnerservice.Reservation.dto.ContractResponseDto;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
 import ready_to_marry.partnerservice.partner.dto.PartnerRequestDto;
 import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
@@ -22,17 +24,6 @@ public class PartnerController {
                         .message("Partner register success")
                         .data(partnerId)
                         .build());
-    }
-    @GetMapping("/{partnerId}")
-    public String test(@PathVariable Long partnerId) {
-        System.out.println("partnerId: " + partnerId);
-        return "완료";
-    }
-
-    @GetMapping()
-    public String test2() {
-        System.out.println("호출 완료");
-        return "완료2";
     }
 
     @GetMapping("/profile/{partnerId}")
@@ -57,5 +48,18 @@ public class PartnerController {
                         .message("Partner delete sucess")
                         .data(result)
                         .build());
+    }
+
+    @PostMapping("/create/contract")
+    public ResponseEntity<ApiResponse<ContractResponseDto>> createContract(ContractRequestDto contractRequestDto, @RequestHeader("X-Partner-Id") Long partnerId) {
+        System.out.println("호출 완료");
+        ContractResponseDto result = partnerService.createContract(contractRequestDto, partnerId);
+        return ResponseEntity.ok(
+                ApiResponse.<ContractResponseDto>builder()
+                        .code(0)
+                        .message("success")
+                        .data(result)
+                        .build()
+        );
     }
 }
