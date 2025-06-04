@@ -7,7 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import ready_to_marry.partnerservice.Reservation.ReservationClient;
 import ready_to_marry.partnerservice.Reservation.dto.ContractRequestDto;
-import ready_to_marry.partnerservice.Reservation.dto.ContractResponseDto;
+import ready_to_marry.partnerservice.Reservation.dto.ContractListResponse;
 import ready_to_marry.partnerservice.common.exception.ErrorCode;
 import ready_to_marry.partnerservice.common.exception.payment.BusinessException;
 import ready_to_marry.partnerservice.common.exception.payment.InfraException;
@@ -87,8 +87,8 @@ public class PartnerServiceImpl implements PartnerService {
     }
 
     @Override
-    public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
-        ContractResponseDto contract = reservationClient.createContract(contractRequestDto, partnerId);
+    public ContractListResponse createContract(ContractRequestDto contractRequestDto, Long partnerId) {
+        ContractListResponse contract = reservationClient.createContract(contractRequestDto, partnerId);
         System.out.println("저장 완료 및 결제 요청 알림 발송 시작");
         //결제 요청 알림 발송
         NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()

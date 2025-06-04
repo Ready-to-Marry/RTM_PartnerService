@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ready_to_marry.partnerservice.Reservation.dto.ContractRequestDto;
-import ready_to_marry.partnerservice.Reservation.dto.ContractResponseDto;
+import ready_to_marry.partnerservice.Reservation.dto.ContractListResponse;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
 import ready_to_marry.partnerservice.partner.dto.PartnerRequestDto;
 import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
@@ -51,11 +51,11 @@ public class PartnerController {
     }
 
     @PostMapping("/create/contract")
-    public ResponseEntity<ApiResponse<ContractResponseDto>> createContract(@RequestBody ContractRequestDto contractRequestDto, @RequestHeader("X-Partner-Id") Long partnerId) {
+    public ResponseEntity<ApiResponse<ContractListResponse>> createContract(@RequestBody ContractRequestDto contractRequestDto, @RequestHeader("X-Partner-Id") Long partnerId) {
         System.out.println("호출 완료");
-        ContractResponseDto result = partnerService.createContract(contractRequestDto, partnerId);
+        ContractListResponse result = partnerService.createContract(contractRequestDto, partnerId);
         return ResponseEntity.ok(
-                ApiResponse.<ContractResponseDto>builder()
+                ApiResponse.<ContractListResponse>builder()
                         .code(0)
                         .message("success")
                         .data(result)

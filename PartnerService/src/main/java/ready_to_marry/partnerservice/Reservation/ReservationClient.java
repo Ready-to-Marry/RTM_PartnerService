@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import ready_to_marry.partnerservice.Reservation.dto.ContractRequestDto;
-import ready_to_marry.partnerservice.Reservation.dto.ContractResponseDto;
+import ready_to_marry.partnerservice.Reservation.dto.ContractListResponse;
 import ready_to_marry.partnerservice.common.dto.ApiResponse;
 import ready_to_marry.partnerservice.common.exception.ErrorCode;
 import ready_to_marry.partnerservice.common.exception.payment.BusinessException;
@@ -19,7 +19,7 @@ public class ReservationClient {
 
     private static final String BASE_URL = "http://reservation-service";
 
-    public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
+    public ContractListResponse createContract(ContractRequestDto contractRequestDto, Long partnerId) {
         System.out.println("http://reservation-service");
         System.out.println(contractRequestDto.getReservationId());
         System.out.println(contractRequestDto.getAmount());
@@ -47,7 +47,7 @@ public class ReservationClient {
                                     }
                                 })
                 )
-                .bodyToMono(new ParameterizedTypeReference<ApiResponse<ContractResponseDto>>() {})
+                .bodyToMono(new ParameterizedTypeReference<ApiResponse<ContractListResponse>>() {})
                 .map(ApiResponse::getData)
                 .block();
     }

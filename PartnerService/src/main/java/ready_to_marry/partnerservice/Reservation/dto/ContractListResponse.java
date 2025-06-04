@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class ContractResponseDto {
+public class ContractListResponse {
 
     private Long contractId;
     private Long userId;
