@@ -89,19 +89,19 @@ public class PartnerServiceImpl implements PartnerService {
     @Override
     public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
         ContractResponseDto contract = reservationClient.createContract(contractRequestDto, partnerId);
-
+        System.out.println("저장 완료 및 결제 요청 알림 발송 시작");
         //결제 요청 알림 발송
         NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()
                 .id("user"+contract.getUserId())
-                .createdAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now().toString())
                 .title("결제 요청")
                 .targetToken(contractRequestDto.getTargetToken())
                 .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
                 .contractId(contract.getContractId())
                 .build();
-
+        System.out.println("발송 시작");
         notificationService.sendNotification(notificationRequestDto);
-
+        System.out.println("발송 완료");
         return contract;
     }
 }

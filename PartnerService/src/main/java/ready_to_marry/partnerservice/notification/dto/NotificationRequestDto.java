@@ -18,5 +18,5 @@ public class NotificationRequestDto {
     private String message;
     private int amount;
     private String targetToken;
-    private LocalDateTime createdAt;
+    private String createdAt;
 }
