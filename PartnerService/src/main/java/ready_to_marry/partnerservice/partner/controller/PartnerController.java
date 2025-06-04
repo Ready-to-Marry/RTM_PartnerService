@@ -51,7 +51,7 @@ public class PartnerController {
     }
 
     @PostMapping("/create/contract")
-    public ResponseEntity<ApiResponse<ContractResponseDto>> createContract(ContractRequestDto contractRequestDto, @RequestHeader("X-Partner-Id") Long partnerId) {
+    public ResponseEntity<ApiResponse<ContractResponseDto>> createContract(@RequestBody ContractRequestDto contractRequestDto, @RequestHeader("X-Partner-Id") Long partnerId) {
         System.out.println("호출 완료");
         ContractResponseDto result = partnerService.createContract(contractRequestDto, partnerId);
         return ResponseEntity.ok(
