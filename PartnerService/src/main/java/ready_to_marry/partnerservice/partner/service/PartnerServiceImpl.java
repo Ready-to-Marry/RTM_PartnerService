@@ -5,9 +5,14 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import ready_to_marry.partnerservice.Reservation.ReservationClient;
+import ready_to_marry.partnerservice.Reservation.dto.ContractRequestDto;
+import ready_to_marry.partnerservice.Reservation.dto.ContractResponseDto;
 import ready_to_marry.partnerservice.common.exception.ErrorCode;
 import ready_to_marry.partnerservice.common.exception.payment.BusinessException;
 import ready_to_marry.partnerservice.common.exception.payment.InfraException;
+import ready_to_marry.partnerservice.notification.dto.NotificationRequestDto;
+import ready_to_marry.partnerservice.notification.service.NotificationService;
 import ready_to_marry.partnerservice.partner.dto.PartnerMapper;
 import ready_to_marry.partnerservice.partner.dto.PartnerRequestDto;
 import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
@@ -19,6 +24,8 @@ import ready_to_marry.partnerservice.partner.repository.PartnerRepository;
 public class PartnerServiceImpl implements PartnerService {
     private final PartnerRepository partnerRepository;
     private final PartnerMapper partnerMapper;
+    private final NotificationService notificationService;
+    private final ReservationClient reservationClient;
 
     @Override
     public PartnerResponseDto findPartnerById(Long partnerId) {
@@ -75,5 +82,23 @@ public class PartnerServiceImpl implements PartnerService {
         } catch (DataAccessException e) {
             throw new InfraException(ErrorCode.POSTGRES_DELETE_FAILURE, e);
         }
+    }
+
+    @Override
+    public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
+        ContractResponseDto contract = reservationClient.createContract(contractRequestDto, partnerId);
+
+        //결제 요청 알림 발송
+        NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()
+                .title("결제 요청")
+                .targetToken(contractRequestDto.getTargetToken())
+                .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
+                .userId(contract.getUserId())
+                .contractId(contract.getContractId())
+                .build();
+
+        notificationService.sendNotification(notificationRequestDto);
+
+        return contract;
     }
 }
