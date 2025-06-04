@@ -8,5 +8,4 @@ public class ContractRequestDto {
     private int amount;
     private String contractContent;
     private String targetToken;
-    private Long userId;
 }
