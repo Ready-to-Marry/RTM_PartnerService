@@ -1,6 +1,7 @@
 package ready_to_marry.partnerservice.Reservation.dto;
 
 import lombok.*;
+import ready_to_marry.partnerservice.Reservation.ContractStatus;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +18,6 @@ public class ContractListResponse {
     private Long itemId;
     private int amount;
     private String contractContent;
-    private String status;
+    private ContractStatus status;
     private LocalDateTime createdAt;
 }
