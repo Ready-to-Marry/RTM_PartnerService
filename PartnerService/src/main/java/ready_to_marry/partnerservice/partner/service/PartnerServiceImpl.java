@@ -93,12 +93,12 @@ public class PartnerServiceImpl implements PartnerService {
             System.out.println("저장 완료 및 결제 요청 알림 발송 시작");
 
             NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()
-                    .id("user" + contract.getUserId())
-                    .createdAt(LocalDateTime.now().toString())
+                    .userId(contract.getUserId().toString())
                     .title("결제 요청")
                     .targetToken(contractRequestDto.getTargetToken())
                     .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
                     .contractId(contract.getContractId())
+                    .amount(contract.getAmount())
                     .build();
 
             System.out.println("발송 시작");

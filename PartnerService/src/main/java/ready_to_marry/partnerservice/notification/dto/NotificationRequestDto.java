@@ -12,11 +12,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class NotificationRequestDto {
-    private String id;
-    private Long contractId;
+    private String targetToken;
     private String title;
     private String message;
+    private String userId;
     private int amount;
-    private String targetToken;
-    private String createdAt;
+    private Long contractId;
 }
