@@ -21,7 +21,8 @@ public class ReservationClient {
 
     public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
         System.out.println("http://reservation-service");
-        System.out.println(contractRequestDto.toString());
+        System.out.println(contractRequestDto.getReservationId());
+        System.out.println(contractRequestDto.getAmount());
         System.out.println(partnerId);
         return webClientBuilder.build()
                 .post()
