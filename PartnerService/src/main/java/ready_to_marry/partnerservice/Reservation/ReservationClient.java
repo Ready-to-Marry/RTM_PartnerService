@@ -20,6 +20,9 @@ public class ReservationClient {
     private static final String BASE_URL = "http://reservation-service";
 
     public ContractResponseDto createContract(ContractRequestDto contractRequestDto, Long partnerId) {
+        System.out.println("http://reservation-service");
+        System.out.println(contractRequestDto.toString());
+        System.out.println(partnerId);
         return webClientBuilder.build()
                 .post()
                 .uri(BASE_URL + "/contracts/request") // 예시 URI, 실제 경로에 맞게 수정
