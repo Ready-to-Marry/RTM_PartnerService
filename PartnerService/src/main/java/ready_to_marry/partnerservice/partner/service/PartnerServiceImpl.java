@@ -19,6 +19,8 @@ import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
 import ready_to_marry.partnerservice.partner.entity.Partner;
 import ready_to_marry.partnerservice.partner.repository.PartnerRepository;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class PartnerServiceImpl implements PartnerService {
@@ -90,10 +92,11 @@ public class PartnerServiceImpl implements PartnerService {
 
         //결제 요청 알림 발송
         NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()
+                .id("user"+contract.getUserId())
+                .createdAt(LocalDateTime.now())
                 .title("결제 요청")
                 .targetToken(contractRequestDto.getTargetToken())
                 .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
-                .userId("user"+contract.getUserId())
                 .contractId(contract.getContractId())
                 .build();
 
