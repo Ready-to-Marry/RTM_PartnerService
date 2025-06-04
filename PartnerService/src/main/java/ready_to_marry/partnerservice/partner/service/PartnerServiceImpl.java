@@ -93,7 +93,7 @@ public class PartnerServiceImpl implements PartnerService {
                 .title("결제 요청")
                 .targetToken(contractRequestDto.getTargetToken())
                 .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
-                .userId(contract.getUserId())
+                .userId("user"+contract.getUserId())
                 .contractId(contract.getContractId())
                 .build();
 
