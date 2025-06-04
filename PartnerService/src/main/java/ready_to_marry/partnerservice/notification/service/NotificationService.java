@@ -12,8 +12,10 @@ import ready_to_marry.partnerservice.notification.dto.NotificationRequestDto;
 public class NotificationService {
     private final WebClient webClient;
 
-    public NotificationService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("https://zbfu2a37ol.execute-api.ap-northeast-2.amazonaws.com").build();
+    public NotificationService() {
+        this.webClient = WebClient.builder()
+                .baseUrl("https://zbfu2a37ol.execute-api.ap-northeast-2.amazonaws.com")
+                .build();
     }
 
     public void sendNotification(NotificationRequestDto requestDto) {
