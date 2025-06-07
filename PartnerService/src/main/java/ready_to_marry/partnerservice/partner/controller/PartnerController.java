@@ -9,7 +9,7 @@ import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
 import ready_to_marry.partnerservice.partner.service.PartnerService;
 
 @RestController
-@RequestMapping("/partners")
+@RequestMapping("/partner")
 @RequiredArgsConstructor
 public class PartnerController {
     private final PartnerService partnerService;
@@ -23,9 +23,22 @@ public class PartnerController {
                         .data(partnerId)
                         .build());
     }
+    @GetMapping("/{partnerId}")
+    public String test(@PathVariable Long partnerId) {
+        System.out.println("partnerId: " + partnerId);
+        return "완료";
+    }
+
+    @GetMapping()
+    public String test2() {
+        System.out.println("호출 완료");
+        return "완료2";
+    }
 
     @GetMapping("/profile/{partnerId}")
     public ResponseEntity<ApiResponse<PartnerResponseDto>> getProfile(@PathVariable Long partnerId) {
+        System.out.println(partnerId);
+        System.out.println("호출 완료");
         PartnerResponseDto result = partnerService.findPartnerById(partnerId);
         return ResponseEntity.ok(
                 ApiResponse.<PartnerResponseDto>builder()

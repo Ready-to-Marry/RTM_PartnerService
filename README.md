@@ -2,7 +2,7 @@
 
 # 1. 언어 및 프레임워크
 - Java 17
-- Spring Boot 3.4.5
+- Spring Boot 3.1.8
 - Lombok
 - Spring Web
 - Spring Data JPA

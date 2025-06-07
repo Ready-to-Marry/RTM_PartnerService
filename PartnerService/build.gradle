@@ -44,6 +44,9 @@ dependencies {
     // Spring Boot Actuator (Health Check용)
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+    // Micrometer-Registry
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
     // Jackson (JSON 직렬화/역직렬화용)
     implementation 'com.fasterxml.jackson.core:jackson-databind'
 
