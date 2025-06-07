@@ -18,6 +18,7 @@ import ready_to_marry.partnerservice.partner.dto.PartnerRequestDto;
 import ready_to_marry.partnerservice.partner.dto.PartnerResponseDto;
 import ready_to_marry.partnerservice.partner.entity.Partner;
 import ready_to_marry.partnerservice.partner.repository.PartnerRepository;
+import ready_to_marry.partnerservice.user.UserClient;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +29,7 @@ public class PartnerServiceImpl implements PartnerService {
     private final PartnerMapper partnerMapper;
     private final NotificationService notificationService;
     private final ReservationClient reservationClient;
+    private final UserClient userClient;
 
     @Override
     public PartnerResponseDto findPartnerById(Long partnerId) {
@@ -92,11 +94,17 @@ public class PartnerServiceImpl implements PartnerService {
             ContractListResponse contract = reservationClient.createContract(contractRequestDto, partnerId);
             System.out.println("저장 완료 및 결제 요청 알림 발송 시작");
 
+            System.out.println("유저 fcm 토큰 호출");
+
+            String targetToken = userClient.getFcmToken(contract.getUserId());
+
+            System.out.println("fcm 토큰 호출 성공" + targetToken);
+
             NotificationRequestDto notificationRequestDto = NotificationRequestDto.builder()
                     .userId(contract.getUserId().toString())
                     .title("결제 요청")
-                    .targetToken(contractRequestDto.getTargetToken())
                     .message(contractRequestDto.getAmount() + "원 결제 요청 도착")
+                    .targetToken(targetToken)
                     .contractId(contract.getContractId())
                     .amount(contract.getAmount())
                     .build();

@@ -13,6 +13,7 @@ public enum ErrorCode {
     NO_SEARCH_TERM(1503, "can't blank search term"),
     PARTNER_NOT_FOUND(1504, "partner not found"),
     DATA_FORMAT_ERROR(1505, "data format error"),
+    USER_NOT_FOUND(1506, "user not found"),
     NOT_FOUND_RESERVATION(1701, "Reservation not found"),
     RESERVATION_STATUS_NOT_ANSWERED(1703, "Reservation status must be ANSWERED"),
     UNAUTHORIZED_RESERVATION_ACCESS(1704, "You do not have permission to access this reservation"),

@@ -7,5 +7,4 @@ public class ContractRequestDto {
     private Long reservationId;
     private int amount;
     private String contractContent;
-    private String targetToken;
 }
